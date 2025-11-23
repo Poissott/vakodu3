@@ -21,14 +21,18 @@ export default {
 
 <style>
 body {
-  height: 100%;
+  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 #app {
-  font-family: Arial;
-  text-align: center;
-  color: #2c3e50;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 </style>
