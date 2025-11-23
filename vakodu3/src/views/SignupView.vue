@@ -1,3 +1,59 @@
+<template>
+  <div class="signup">
+    <main class="signup-content">
+      <h2>Sign Up</h2>
+      <form @submit.prevent="submitForm" class="signup-form"> // Form element prevents default submit behavior and calls submitForm()
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" v-model="name" id="name" required />
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" v-model="email" id="email" required />
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            v-model="password"
+            id="password"
+            required
+          />
+          <div v-if="passwordErrors.length" class="errors">
+            <p>Password is not valid:</p>
+            <ul>
+              <li v-for="(error, index) in passwordErrors" :key="index">{{ error }}</li> // Loops through all errors and display them as list items
+            </ul>
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            v-model="confirmPassword"
+            id="confirmPassword"
+            required
+          />
+          <div v-if="confirmPassword && confirmPassword !== password" class="errors">
+            <p>Passwords do not match</p>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" :disabled="!canSubmit"> // Submit button is disabled if canSubmit is false
+          Sign Up
+        </button>
+      </form>
+    </main>
+  </div>
+</template>
+
 <script>
 export default {
   name: "SignUpView",
@@ -81,3 +137,74 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+/* Outer wrapper for the signup page */
+.signup {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Centered white card containing the form */
+.signup-content {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Each form field group */
+.signup-form .form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.signup-form input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.errors {
+  margin-top: 5px;
+  color: #b00020;
+  font-size: 0.9rem;
+}
+
+/* Error list formatting */
+.errors ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  background: #004080;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+</style>
