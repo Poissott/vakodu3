@@ -2,7 +2,8 @@
   <div class="signup">
     <main class="signup-content">
       <h2>Sign Up</h2>
-      <form @submit.prevent="submitForm" class="signup-form"> // Form element prevents default submit behavior and calls submitForm()
+      <!-- Form element prevents default submit behavior and calls submitForm() -->
+      <form @submit.prevent="submitForm" class="signup-form"> 
         <!-- Name -->
         <div class="form-group">
           <label for="name">Name</label>
@@ -27,7 +28,8 @@
           <div v-if="passwordErrors.length" class="errors">
             <p>Password is not valid:</p>
             <ul>
-              <li v-for="(error, index) in passwordErrors" :key="index">{{ error }}</li> // Loops through all errors and display them as list items
+               <!-- Loops through all errors and display them as list items -->
+              <li v-for="(error, index) in passwordErrors" :key="index">{{ error }}</li>
             </ul>
           </div>
         </div>
@@ -46,7 +48,8 @@
           </div>
         </div>
 
-        <button type="submit" class="submit-btn" :disabled="!canSubmit"> // Submit button is disabled if canSubmit is false
+        <!-- Submit button: disabled if canSubmit is false -->
+        <button type="submit" class="submit-btn" :disabled="!canSubmit">
           Sign Up
         </button>
       </form>
